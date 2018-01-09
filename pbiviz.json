@@ -1,0 +1,28 @@
+{
+  "visual": {
+    "name": "PowerBIPrintButton",
+    "displayName": "PowerBI PrintButton",
+    "guid": "powerBIPrintButton3925D33A881F43DB8F6511F7564627B2",
+    "visualClassName": "Visual",
+    "version": "1.0.0",
+    "description": "Export in PDF format datamodels used in PowerBI reports for printing",
+    "supportUrl": "",
+    "gitHubUrl": ""
+  },
+  "apiVersion": "1.10.0",
+  "author": {
+    "name": "P Michel",
+    "email": "LePmnin@Gmail.com"
+  },
+  "assets": {
+    "icon": "assets/Imprimante20x20.png"
+  },
+  "externalJS": [
+    "node_modules/powerbi-visuals-utils-dataviewutils/lib/index.js",
+	"node_modules/d3/build/d3.min.js"
+  ],
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": "dependencies.json",
+  "stringResources": []
+}
