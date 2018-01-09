@@ -52,6 +52,9 @@
     <None Include=".vscode\launch.json" />
     <None Include=".vscode\settings.json" />
     <None Include="capabilities.json" />
+    <None Include="node_modules\%40types\d3\LICENSE" />
+    <None Include="node_modules\%40types\d3\package.json" />
+    <None Include="node_modules\%40types\d3\README.md" />
     <None Include="node_modules\.bin\acorn" />
     <None Include="node_modules\.bin\acorn.cmd" />
     <None Include="node_modules\.bin\brfs" />
@@ -848,6 +851,7 @@
     <TypeScriptCompile Include=".tmp\precompile\src\settings.ts" />
     <TypeScriptCompile Include=".tmp\precompile\src\visual.ts" />
     <TypeScriptCompile Include=".tmp\precompile\visualPlugin.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\d3\index.d.ts" />
     <TypeScriptCompile Include="node_modules\commander\typings\index.d.ts" />
     <TypeScriptCompile Include="node_modules\iconv-lite\lib\index.d.ts" />
     <TypeScriptCompile Include="node_modules\powerbi-visuals-utils-dataviewutils\lib\index.d.ts" />

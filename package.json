@@ -1,7 +1,8 @@
 {
   "name": "visual",
   "dependencies": {
-    "d3": "^4.9.1",
+    "@types/d3": "^3.5.40",
+    "d3": "^3.5.17",
     "pdfkit": "^0.8.3",
     "pdfmake": "^0.1.35",
     "powerbi-visuals-utils-dataviewutils": "^1.2.0"
