@@ -1,8 +1,19 @@
+
+import DataViewUtils = powerbi.extensibility.utils.dataview;
+//import ConverterHelper = powerbi.extensibility.utils.dataview.converterHelper;
+//import DataRoleHelper = powerbi.extensibility.utils.dataview.DataRoleHelper;
+//import DataViewObject = powerbi.extensibility.utils.dataview.DataViewObject;
+//import DataViewObjects = powerbi.extensibility.utils.dataview.DataViewObjects;
+//import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
+
 module powerbi.extensibility.visual {
 
     export interface CategoryViewModel {
-        value: string;
         identity: string;
+        value: string;
+    }
+
+    export interface GroupingViewModel {
     }
 
     export interface ValueViewModel {
@@ -19,9 +30,11 @@ module powerbi.extensibility.visual {
         private settings: VisualSettings;
 
         private imprimanteButton: HTMLButtonElement;
-
+        
         constructor(options: VisualConstructorOptions) {
-            
+
+
+
             this.imprimanteButton = document.createElement('button');
             this.imprimanteButton.textContent = "Click to Print";
             this.imprimanteButton.onclick = function(){
@@ -43,23 +56,65 @@ module powerbi.extensibility.visual {
                 console.log("Imprimante Button Onclick Update");
 
 
-                var viewModel = Visual.converter(options.dataViews[0]);
+                console.log(options.dataViews[0].categorical.categories[0].objects);
+
+                //console.log("DataView");
+
+                //console.log(options.dataViews[0]);
+
+                //console.log("Categories");
+
+                //console.log(options.dataViews[0].categorical.categories);
+
+                options.dataViews[0].categorical.categories.forEach(function (value: DataViewCategoryColumn, index: number, array: DataViewCategoryColumn[]) {
+                    //console.log(index + " : " + value.source.displayName);
+                    value.values.forEach(function (value: PrimitiveValue, index: number, array: PrimitiveValue[]) {
+                        //console.log(index + " : " + value);
+                        
+                    });
+                });
+                
+                //console.log("Values");
+                //console.log(options.dataViews[0].categorical.values);
+
+                options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
+                    //console.log(index);
+                    //console.log(value);
+                });
+
+                //options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
+                //    console.log(value);
+                //    console.log(index);
+                //    console.log(array);
+
+                //    console.log(index + " : " + value.source.displayName);
+                //});
+
+                
+
+
+                //options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
+                //    console.log(value);
+                //    console.log(index);
+                //    console.log(array);
+                //});
+
+
+                //var viewModel = Visual.converter(options.dataViews[0]);
+                //console.log(viewModel);
+                
                 //console.log(viewModel);
 
-                console.log(options.dataViews[0]);
+                //var data = [];
+                //for (var i in viewModel.categories) {
+                //    var dataPoint = {
+                //        cat: viewModel.categories[i].value,
+                //        val: viewModel.values[i].values[0]
+                //    };
+                //    data.push(dataPoint);
+                //}
 
-                console.log(viewModel);
-
-                var data = [];
-                for (var i in viewModel.categories) {
-                    var dataPoint = {
-                        cat: viewModel.categories[i].value,
-                        val: viewModel.values[i].values[0]
-                    };
-                    data.push(dataPoint);
-                }
-
-                console.log(data);
+                //console.log(data);
                 
                 //Visual.PDFExport(options.dataViews[0]);
             }

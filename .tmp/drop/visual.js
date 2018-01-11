@@ -576,6 +576,12 @@ var powerbi;
         })(visual = extensibility.visual || (extensibility.visual = {}));
     })(extensibility = powerbi.extensibility || (powerbi.extensibility = {}));
 })(powerbi || (powerbi = {}));
+var DataViewUtils = powerbi.extensibility.utils.dataview;
+//import ConverterHelper = powerbi.extensibility.utils.dataview.converterHelper;
+//import DataRoleHelper = powerbi.extensibility.utils.dataview.DataRoleHelper;
+//import DataViewObject = powerbi.extensibility.utils.dataview.DataViewObject;
+//import DataViewObjects = powerbi.extensibility.utils.dataview.DataViewObjects;
+//import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
 var powerbi;
 (function (powerbi) {
     var extensibility;
@@ -599,19 +605,46 @@ var powerbi;
                         this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
                         this.imprimanteButton.onclick = function () {
                             console.log("Imprimante Button Onclick Update");
-                            var viewModel = Visual.converter(options.dataViews[0]);
+                            console.log(options.dataViews[0].categorical.categories[0].objects);
+                            //console.log("DataView");
+                            //console.log(options.dataViews[0]);
+                            //console.log("Categories");
+                            //console.log(options.dataViews[0].categorical.categories);
+                            options.dataViews[0].categorical.categories.forEach(function (value, index, array) {
+                                //console.log(index + " : " + value.source.displayName);
+                                value.values.forEach(function (value, index, array) {
+                                    //console.log(index + " : " + value);
+                                });
+                            });
+                            //console.log("Values");
+                            //console.log(options.dataViews[0].categorical.values);
+                            options.dataViews[0].categorical.values.forEach(function (value, index, array) {
+                                //console.log(index);
+                                //console.log(value);
+                            });
+                            //options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
+                            //    console.log(value);
+                            //    console.log(index);
+                            //    console.log(array);
+                            //    console.log(index + " : " + value.source.displayName);
+                            //});
+                            //options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
+                            //    console.log(value);
+                            //    console.log(index);
+                            //    console.log(array);
+                            //});
+                            //var viewModel = Visual.converter(options.dataViews[0]);
                             //console.log(viewModel);
-                            console.log(options.dataViews[0]);
-                            console.log(viewModel);
-                            var data = [];
-                            for (var i in viewModel.categories) {
-                                var dataPoint = {
-                                    cat: viewModel.categories[i].value,
-                                    val: viewModel.values[i].values[0]
-                                };
-                                data.push(dataPoint);
-                            }
-                            console.log(data);
+                            //console.log(viewModel);
+                            //var data = [];
+                            //for (var i in viewModel.categories) {
+                            //    var dataPoint = {
+                            //        cat: viewModel.categories[i].value,
+                            //        val: viewModel.values[i].values[0]
+                            //    };
+                            //    data.push(dataPoint);
+                            //}
+                            //console.log(data);
                             //Visual.PDFExport(options.dataViews[0]);
                         };
                     };

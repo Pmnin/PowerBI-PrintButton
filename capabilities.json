@@ -22,34 +22,17 @@
         "categories": {
           "for": {
             "in": "rows"
-          },
-          "dataReductionAlgorithm": {
-            "top": {
-              "count": 100
-            }
           }
         },
         "values": {
           "group": {
-            "by": "columns",
-            "select": [
-              {
-                "for": {
-                  "in": "measures"
-                }
-              }
-            ],
-            "dataReductionAlgorithm": {
-              "top": {
-                "count": 100
-              }
-            }
+            "by": "columns", 
+            "select":[
+              { "bind": { "to": "measures" } }
+            ]
           }
         }
       }
     }
-  ],
-  "objects": {
-
-  }
+  ]
 }
