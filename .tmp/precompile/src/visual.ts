@@ -1,56 +1,128 @@
-
 module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F7564627B2  {
 
-    //import printSymbol from '../assets/imprimante24x24.svg';
+    export interface CategoryViewModel {
+        value: string;
+        identity: string;
+    }
 
+    export interface ValueViewModel {
+        values: any[];
+    }
+
+    export interface ViewModel {
+        categories: CategoryViewModel[];
+        values: ValueViewModel[];
+    }
+    
     export class Visual implements IVisual {
-        private target: HTMLElement;
+        
         private settings: VisualSettings;
 
-        private svgRoot: d3.Selection<SVGElementInstance>;
-        private ellipse: d3.Selection<SVGElementInstance>;
-        private image: d3.Selection<SVGElementInstance>;
-        private padding: number = 20;
-
+        private imprimanteButton: HTMLButtonElement;
 
         constructor(options: VisualConstructorOptions) {
-            /*
-            this.target = options.element;
-            if (typeof document !== "undefined") {
-                const new_p: HTMLElement = document.createElement("p");
-                new_p.appendChild(document.createTextNode("Test CSMV"));
-                this.target.appendChild(new_p);
-            }
-            */
             
-            this.svgRoot = d3.select(options.element).append("svg");
-            this.ellipse = this.svgRoot.append("ellipse").style("fill", "rgba(255,255,0,0.5)").style("stroke", "rgba(0, 0, 0, 1.0)").style("stroke-width", "4");
-
-
+            this.imprimanteButton = document.createElement('button');
+            this.imprimanteButton.textContent = "Click to Print";
+            this.imprimanteButton.onclick = function(){
+                console.log("Imprimante Button Onclick Constructor");
+            }
+            
+            options.element.appendChild(this.imprimanteButton);
+            
         }
 
         public update(options: VisualUpdateOptions) {
             console.log("Update Function");
 
+            //console.log(options.dataViews);
+
             this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
-            
-            this.svgRoot.attr("width", options.viewport.width).attr("height", options.viewport.height);
 
-            var plot = {
-                xOffset: this.padding,
-                yOffset: this.padding,
-                width: options.viewport.width - (this.padding * 2),
-                height: options.viewport.height - (this.padding * 2)
-            };
+            this.imprimanteButton.onclick = function () {
+                console.log("Imprimante Button Onclick Update");
 
-            this.ellipse.attr("cx", plot.xOffset + (plot.width * 0.5)).attr("cy", plot.yOffset + (plot.height * 0.5)).attr("rx", (plot.width * 0.5)).attr("ry", (plot.height * 0.5));
+
+                var viewModel = Visual.converter(options.dataViews[0]);
+                //console.log(viewModel);
+
+                console.log(options.dataViews[0]);
+
+                console.log(viewModel);
+
+                var data = [];
+                for (var i in viewModel.categories) {
+                    var dataPoint = {
+                        cat: viewModel.categories[i].value,
+                        val: viewModel.values[i].values[0]
+                    };
+                    data.push(dataPoint);
+                }
+
+                console.log(data);
+                
+                //Visual.PDFExport(options.dataViews[0]);
+            }
+
 
         }
+        
+        public static converter(dataView: DataView): ViewModel {
+            var viewModel: ViewModel = {
+                categories: [],
+                values: []
+            }
+            if (dataView) {
+                var categorical = dataView.categorical;
+                if (categorical) {
+                    var categories = categorical.categories;
+                    var series = categorical.values;
+                    var formatString = dataView.metadata.columns[0].format;
+
+                    //console.log(categories);
+                    //console.log(series);
+                    //console.log(formatString);
+
+                    if (categories && series && categories.length > 0 && series.length > 0) {
+                        for (var i = 0, catLength = categories[0].values.length; i < catLength; i++) {
+                            viewModel.categories.push({ value: categories[0].values[i].toString(), identity: '' })
+
+                            for (var k = 0, seriesLength = series.length; k < seriesLength; k++) {
+                                var value = series[k].values[i];
+                                if (k == 0) {
+                                    viewModel.values.push({ values: [] });
+                                }
+                                viewModel.values[i].values.push(value);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return viewModel;
+        }
+
+        private static PDFExport(dataView: DataView) {
+            console.log("PDF Export Function");
+
+            console.log("Dataview");
+            console.log(dataView);
+
+            console.log("Categories");
+            console.log(dataView.categorical.categories)
+            
+            console.log("Series");
+            console.log(dataView.categorical.values);
+
+
+
+        }
+
 
         private static parseSettings(dataView: DataView): VisualSettings {
             return VisualSettings.parse(dataView) as VisualSettings;
         }
-
+        
         /** 
          * This function gets called for each of the objects defined in the capabilities files and allows you to select which of the 
          * objects and properties you want to expose to the users in the property pane.
@@ -58,5 +130,6 @@ module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F756
         public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstance[] | VisualObjectInstanceEnumerationObject {
             return VisualSettings.enumerateObjectInstances(this.settings || VisualSettings.getDefault(), options);
         }
+
     }
 }
