@@ -855,6 +855,7 @@
     <TypeScriptCompile Include="node_modules\commander\typings\index.d.ts" />
     <TypeScriptCompile Include="node_modules\iconv-lite\lib\index.d.ts" />
     <TypeScriptCompile Include="node_modules\powerbi-visuals-utils-dataviewutils\lib\index.d.ts" />
+    <TypeScriptCompile Include="src\columns.ts" />
     <TypeScriptCompile Include="src\settings.ts" />
     <TypeScriptCompile Include="src\visual.ts" />
   </ItemGroup>

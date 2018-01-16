@@ -1,5 +1,6 @@
 
 import DataViewUtils = powerbi.extensibility.utils.dataview;
+
 //import ConverterHelper = powerbi.extensibility.utils.dataview.converterHelper;
 //import DataRoleHelper = powerbi.extensibility.utils.dataview.DataRoleHelper;
 //import DataViewObject = powerbi.extensibility.utils.dataview.DataViewObject;

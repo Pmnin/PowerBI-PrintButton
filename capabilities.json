@@ -28,7 +28,7 @@
           "group": {
             "by": "columns", 
             "select":[
-              { "bind": { "to": "measures" } }
+              { "for": { "in": "measures" } }
             ]
           }
         }
