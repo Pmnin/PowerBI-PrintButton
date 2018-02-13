@@ -22,12 +22,17 @@
         "categories": {
           "for": {
             "in": "rows"
+          },
+          "dataReductionAlgorithm": {
+            "top": {
+              "count": 100
+            }
           }
         },
         "values": {
           "group": {
-            "by": "columns", 
-            "select":[
+            "by": "columns",
+            "select": [
               { "for": { "in": "measures" } }
             ]
           }

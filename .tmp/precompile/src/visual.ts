@@ -1,14 +1,16 @@
 
-import DataViewUtils = powerbi.extensibility.utils.dataview;
+import dataViewUtils = powerbi.extensibility.utils.dataview;
+import converterHelper = powerbi.extensibility.utils.dataview.converterHelper;
 
-//import ConverterHelper = powerbi.extensibility.utils.dataview.converterHelper;
 //import DataRoleHelper = powerbi.extensibility.utils.dataview.DataRoleHelper;
 //import DataViewObject = powerbi.extensibility.utils.dataview.DataViewObject;
 //import DataViewObjects = powerbi.extensibility.utils.dataview.DataViewObjects;
 //import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
 
-module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F7564627B2  {
+declare var pdfMake;
 
+module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F7564627B2  {
+    
     export interface CategoryViewModel {
         identity: string;
         value: string;
@@ -25,21 +27,32 @@ module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F756
         categories: CategoryViewModel[];
         values: ValueViewModel[];
     }
+
+    export interface tableModel {
+        columnHeaders: string[];
+        rows: string[][];
+    }
+
+    export interface tableRowModel {
+        columnValues: string[];
+    }
     
     export class Visual implements IVisual {
         
         private settings: VisualSettings;
 
         private imprimanteButton: HTMLButtonElement;
+
+        private tableModel: tableModel;
         
         constructor(options: VisualConstructorOptions) {
 
-
-
+            console.log("Constructor Function");
+            
             this.imprimanteButton = document.createElement('button');
             this.imprimanteButton.textContent = "Click to Print";
             this.imprimanteButton.onclick = function(){
-                console.log("Imprimante Button Onclick Constructor");
+                console.log("Imprimante Button Onclick Constructor Function");
             }
             
             options.element.appendChild(this.imprimanteButton);
@@ -48,79 +61,81 @@ module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F756
 
         public update(options: VisualUpdateOptions) {
             console.log("Update Function");
-
-            //console.log(options.dataViews);
-
+            
             this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
 
+            console.log("DataView");
+            console.log(options.dataViews[0]);
+            
+            //let columnHeaders: string[];
+            //let tableRowsModel: tableRowModel[];
+            //let tableRows: string[][];
+            //let tableRowsValues: string[];
+            //let emptyRowValues: string[];
+
+            //console.log("Table Columns");
+
+            /*
+            options.dataViews[0].table.columns.forEach(function (value: DataViewMetadataColumn, index: number, array: DataViewMetadataColumn[]) {
+                console.log(value.displayName.toString());
+                
+                console.log(columnHeaders.push(value.displayName.toString()));
+                
+                console.log("Wat");
+            });
+            */
+
+            //this.tableModel.columnHeaders = columnHeaders;
+            //console.log("TableColumns");
+            //console.log(this.tableModel.columnHeaders);
+
+            /*
+            options.dataViews[0].table.rows.forEach(function (row: DataViewTableRow, index: number, array: DataViewTableRow[]) {
+                
+                row.forEach(function (value: PrimitiveValue, index: number, array: PrimitiveValue[]) {
+                    tableRowsValues.push(value.toString());
+                    if (index == (array.length - 1)) {
+                        tableRows.push(tableRowsValues);
+                        tableRowsValues = emptyRowValues;
+                    }
+                });
+            });
+            */
+
+            //this.tableModel.rows = tableRows;
+            //console.log("TableRows");
+            //console.log(this.tableModel.rows);
+
+            //console.log("TableModel");
+            //console.log(this.tableModel);
+            
+            let viewModel: ViewModel = Visual.converter(options.dataViews[0]);
+            console.log(viewModel);
+
             this.imprimanteButton.onclick = function () {
-                console.log("Imprimante Button Onclick Update");
+                console.log("Imprimante Button Onclick Update Function");
 
+                console.log("Blind PDF");
+                var docDefinition = { content: "This is a sample PDF printed with pdfMake" };
 
-                console.log(options.dataViews[0].categorical.categories[0].objects);
-
-                //console.log("DataView");
-
+                pdfMake.createPDF(docDefinition).open();
+                
                 //console.log(options.dataViews[0]);
 
-                //console.log("Categories");
-
-                //console.log(options.dataViews[0].categorical.categories);
-
+                /*
                 options.dataViews[0].categorical.categories.forEach(function (value: DataViewCategoryColumn, index: number, array: DataViewCategoryColumn[]) {
                     //console.log(index + " : " + value.source.displayName);
                     value.values.forEach(function (value: PrimitiveValue, index: number, array: PrimitiveValue[]) {
                         //console.log(index + " : " + value);
-                        
                     });
                 });
                 
-                //console.log("Values");
-                //console.log(options.dataViews[0].categorical.values);
-
                 options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
                     //console.log(index);
                     //console.log(value);
                 });
-
-                //options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
-                //    console.log(value);
-                //    console.log(index);
-                //    console.log(array);
-
-                //    console.log(index + " : " + value.source.displayName);
-                //});
-
-                
-
-
-                //options.dataViews[0].categorical.values.forEach(function (value: DataViewValueColumn, index: number, array: DataViewValueColumn[]) {
-                //    console.log(value);
-                //    console.log(index);
-                //    console.log(array);
-                //});
-
-
-                //var viewModel = Visual.converter(options.dataViews[0]);
-                //console.log(viewModel);
-                
-                //console.log(viewModel);
-
-                //var data = [];
-                //for (var i in viewModel.categories) {
-                //    var dataPoint = {
-                //        cat: viewModel.categories[i].value,
-                //        val: viewModel.values[i].values[0]
-                //    };
-                //    data.push(dataPoint);
-                //}
-
-                //console.log(data);
-                
-                //Visual.PDFExport(options.dataViews[0]);
+                */
             }
-
-
         }
         
         public static converter(dataView: DataView): ViewModel {
@@ -157,24 +172,7 @@ module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F756
 
             return viewModel;
         }
-
-        private static PDFExport(dataView: DataView) {
-            console.log("PDF Export Function");
-
-            console.log("Dataview");
-            console.log(dataView);
-
-            console.log("Categories");
-            console.log(dataView.categorical.categories)
-            
-            console.log("Series");
-            console.log(dataView.categorical.values);
-
-
-
-        }
-
-
+        
         private static parseSettings(dataView: DataView): VisualSettings {
             return VisualSettings.parse(dataView) as VisualSettings;
         }
