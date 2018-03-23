@@ -58,18 +58,12 @@
     <None Include="node_modules\%40types\jquery\LICENSE" />
     <None Include="node_modules\%40types\jquery\package.json" />
     <None Include="node_modules\%40types\jquery\README.md" />
-    <None Include="node_modules\%40types\jspdf\package.json" />
-    <None Include="node_modules\%40types\jspdf\README.md" />
-    <None Include="node_modules\%40types\jspdf\types-metadata.json" />
     <None Include="node_modules\%40types\lodash\package.json" />
     <None Include="node_modules\%40types\lodash\README.md" />
     <None Include="node_modules\%40types\lodash\types-metadata.json" />
     <None Include="node_modules\%40types\node\LICENSE" />
     <None Include="node_modules\%40types\node\package.json" />
     <None Include="node_modules\%40types\node\README.md" />
-    <None Include="node_modules\%40types\pdfkit\LICENSE" />
-    <None Include="node_modules\%40types\pdfkit\package.json" />
-    <None Include="node_modules\%40types\pdfkit\README.md" />
     <None Include="node_modules\.bin\acorn" />
     <None Include="node_modules\.bin\acorn.cmd" />
     <None Include="node_modules\.bin\brfs" />
@@ -868,7 +862,6 @@
     <TypeScriptCompile Include=".tmp\precompile\visualPlugin.ts" />
     <TypeScriptCompile Include="node_modules\%40types\d3\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\jspdf\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\lodash\add\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\lodash\after\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\lodash\ary\index.d.ts" />
@@ -1158,12 +1151,11 @@
     <TypeScriptCompile Include="node_modules\%40types\lodash\zip\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\node\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\node\inspector.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\pdfkit\index.d.ts" />
     <TypeScriptCompile Include="node_modules\commander\typings\index.d.ts" />
     <TypeScriptCompile Include="node_modules\iconv-lite\lib\index.d.ts" />
     <TypeScriptCompile Include="node_modules\powerbi-visuals-utils-dataviewutils\lib\index.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.d.ts" />
     <TypeScriptCompile Include="src\columns.ts" />
+    <TypeScriptCompile Include="src\PDFMaking.ts" />
     <TypeScriptCompile Include="src\settings.ts" />
     <TypeScriptCompile Include="src\visual.ts" />
   </ItemGroup>

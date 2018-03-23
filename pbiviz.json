@@ -15,7 +15,11 @@
     "email": "LePmnin@Gmail.com"
   },
   "assets": {
-    "icon": "assets/Imprimante20x20.png"
+    "defaultIcon": "assets/icon.png",
+    "icon": "assets/Imprimante20x20.png",
+    "Imprimante20x20": "assets/Imprimante20x20.png",
+    "Imprimante24x24": "assets/Imprimante24x24.png",
+    "Imprimante-Circle": "assets/Imprimante-Circle.png"
   },
   "externalJS": [
     "node_modules/powerbi-visuals-utils-typeutils/lib/index.js",
@@ -27,7 +31,9 @@
     "node_modules/powerbi-visuals-utils-interactivityutils/lib/index.js",
     "node_modules/powerbi-visuals-utils-chartutils/lib/index.js",
     "node_modules/d3/d3.min.js",
-    "node_modules/lodash/lodash.js"
+    "node_modules/lodash/lodash.js",
+    "node_modules/pdfmake/build/pdfmake.js",
+    "node_modules/pdfmake/build/vfs_fonts.js"
   ],
   "style": "style/visual.less",
   "capabilities": "capabilities.json",

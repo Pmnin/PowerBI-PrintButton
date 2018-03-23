@@ -1,16 +1,20 @@
 
-import dataViewUtils = powerbi.extensibility.utils.dataview;
-import converterHelper = powerbi.extensibility.utils.dataview.converterHelper;
+//import dataViewUtils = powerbi.extensibility.utils.dataview;
+//import converterHelper = powerbi.extensibility.utils.dataview.converterHelper;
 
 //import DataRoleHelper = powerbi.extensibility.utils.dataview.DataRoleHelper;
 //import DataViewObject = powerbi.extensibility.utils.dataview.DataViewObject;
 //import DataViewObjects = powerbi.extensibility.utils.dataview.DataViewObjects;
 //import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
 
-declare var pdfMake;
+import powow =  powerbi.extensibility.visual;
+
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
 
 module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F7564627B2  {
-    
+
     export interface CategoryViewModel {
         identity: string;
         value: string;
@@ -37,16 +41,16 @@ module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F756
         columnValues: string[];
     }
     
-    export class Visual implements IVisual {
+    export class Visual /*implements IVisual*/ {
         
         private settings: VisualSettings;
-
+        
         private imprimanteButton: HTMLButtonElement;
 
         private tableModel: tableModel;
         
         constructor(options: VisualConstructorOptions) {
-
+            
             console.log("Constructor Function");
             
             this.imprimanteButton = document.createElement('button');
@@ -60,6 +64,7 @@ module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F756
         }
 
         public update(options: VisualUpdateOptions) {
+            
             console.log("Update Function");
             
             this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
@@ -114,11 +119,6 @@ module powerbi.extensibility.visual.powerBIPrintButton3925D33A881F43DB8F6511F756
 
             this.imprimanteButton.onclick = function () {
                 console.log("Imprimante Button Onclick Update Function");
-
-                console.log("Blind PDF");
-                var docDefinition = { content: "This is a sample PDF printed with pdfMake" };
-
-                pdfMake.createPDF(docDefinition).open();
                 
                 //console.log(options.dataViews[0]);
 

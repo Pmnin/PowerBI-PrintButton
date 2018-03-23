@@ -7,6 +7,12 @@
 //import DataViewObjects = powerbi.extensibility.utils.dataview.DataViewObjects;
 //import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
 
+import powow =  powerbi.extensibility.visual;
+
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
+
 module powerbi.extensibility.visual {
 
     export interface CategoryViewModel {
@@ -35,10 +41,10 @@ module powerbi.extensibility.visual {
         columnValues: string[];
     }
     
-    export class Visual implements IVisual {
+    export class Visual /*implements IVisual*/ {
         
         private settings: VisualSettings;
-
+        
         private imprimanteButton: HTMLButtonElement;
 
         private tableModel: tableModel;

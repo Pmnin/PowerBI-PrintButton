@@ -6,6 +6,7 @@
     "@types/lodash": "4.14.52",
     "d3": "^3.5.17",
     "lodash": "4.16.2",
+    "pdfmake": "^0.1.36",
     "powerbi-visuals-utils-chartutils": "^1.2.0",
     "powerbi-visuals-utils-colorutils": "^1.0.0",
     "powerbi-visuals-utils-dataviewutils": "^1.2.0",
@@ -15,6 +16,6 @@
     "powerbi-visuals-utils-testutils": "^1.0.1",
     "powerbi-visuals-utils-tooltiputils": "^1.0.0",
     "powerbi-visuals-utils-typeutils": "^1.1.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.3.4"
   }
 }
